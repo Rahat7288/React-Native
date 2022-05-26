@@ -1,16 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 
 
 export default function App() {
 
-  const [name,setName] = useState('rahat');
-  const [person, setPerson] = useState ({name: 'Himel', age: 24});
-  const clickhandler = () => {
-    setName ('akash');
-    setPerson({name: 'Rakib', age: 28});
-  }
+  const [name, setName] = useState('Rahat');
+  const [age, setAge]    = useState('24');
+ 
 
   return (
     /**
@@ -19,11 +16,23 @@ export default function App() {
      * we can create view inside other view
      */
     <View style={styles.container}>
-      <Text>My Name Is {name}</Text>
-      <Text>His name is {person.name} nad his age is {person.age}</Text>
-      <View style = {styles.buttonContainer}>
-        <Button title = 'Update state' onPress = {clickhandler}/>
-      </View>
+
+      <Text>Enter Name:</Text>
+      <TextInput 
+      multiline
+      style = {styles.input}
+      placeholder = 'Name'
+      onChangeText = {(val) => setName(val)}/>
+
+<Text>Enter Age:</Text>
+      <TextInput 
+      keyboardType='numeric'
+      style = {styles.input}
+      placeholder = 'Age'
+      onChangeText = {(val) => setAge(val)}/>
+
+      <Text> name: {name}, age: {age}</Text>
+      
     </View>
 
   
@@ -41,8 +50,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonContainer: {
-    marginTop: 20,
-    padding: 20,
+  input: {
+    borderWidth: 1,
+    borderColor: 'black',
+    padding: 5,
+    margin: 10,
+    width: 200,
   }
 });
