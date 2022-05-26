@@ -1,12 +1,21 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 
 
 export default function App() {
 
-  const [name, setName] = useState('Rahat');
-  const [age, setAge]    = useState('24');
+  const [people, setPeople] = useState([
+    {name: 'rahat',   key: '1'},
+    {name: 'islam',   key: '2'},
+    {name: 'akash',   key: '3'},
+    {name: 'himel',   key: '4'},
+    {name: 'rakibul', key: '5'},
+    {name: 'Kazi',    key: '6'},
+    {name: 'Kazi',    key: '7'},
+    {name: 'Kazi',    key: '8'},
+    {name: 'Kazi',    key: '9'},
+  ]);
  
 
   return (
@@ -16,23 +25,17 @@ export default function App() {
      * we can create view inside other view
      */
     <View style={styles.container}>
-
-      <Text>Enter Name:</Text>
-      <TextInput 
-      multiline
-      style = {styles.input}
-      placeholder = 'Name'
-      onChangeText = {(val) => setName(val)}/>
-
-<Text>Enter Age:</Text>
-      <TextInput 
-      keyboardType='numeric'
-      style = {styles.input}
-      placeholder = 'Age'
-      onChangeText = {(val) => setAge(val)}/>
-
-      <Text> name: {name}, age: {age}</Text>
+      <ScrollView>
+      {people.map((item)=>{
+        return (
+          <View key={item.key}>
+            <Text style = {styles.item}>{item.name}</Text>
+          </View>
+        )
+      })}
+      </ScrollView>
       
+    
     </View>
 
   
@@ -45,16 +48,19 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'yellow',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex:                1,
+    backgroundColor:    'yellow',
+    paddingTop:         40,
+    paddingHorizontal:  20,
+    //alignItems: 'center',
+    //justifyContent: 'center',
   },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 5,
-    margin: 10,
-    width: 200,
+  item: {
+    marginTop: 24,
+    padding: 30,
+    backgroundColor: 'orange',
+    fontSize: 24,
+
   }
+ 
 });
