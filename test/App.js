@@ -1,20 +1,20 @@
 import { StatusBar } from 'expo-status-bar';
 import React,{useState} from 'react';
-import { StyleSheet, Text, View, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, FlatList} from 'react-native';
 
 
 export default function App() {
 
   const [people, setPeople] = useState([
-    {name: 'rahat',   key: '1'},
-    {name: 'islam',   key: '2'},
-    {name: 'akash',   key: '3'},
-    {name: 'himel',   key: '4'},
-    {name: 'rakibul', key: '5'},
-    {name: 'Kazi',    key: '6'},
-    {name: 'Kazi',    key: '7'},
-    {name: 'Kazi',    key: '8'},
-    {name: 'Kazi',    key: '9'},
+    {name: 'rahat',   id: '1'},
+    {name: 'islam',   id: '2'},
+    {name: 'akash',   id: '3'},
+    {name: 'himel',   id: '4'},
+    {name: 'rakibul', id: '5'},
+    {name: 'Kazi',    id: '6'},
+    {name: 'Kazi',    id: '7'},
+    {name: 'Kazi',    id: '8'},
+    {name: 'Kazi',    id: '9'},
   ]);
  
 
@@ -25,7 +25,22 @@ export default function App() {
      * we can create view inside other view
      */
     <View style={styles.container}>
-      <ScrollView>
+
+      {/* 
+      if we have too may items in a list its better jto use the FlateList
+      */}
+
+      <FlatList
+      keyExtractor={(item)=> item.id}
+        data={people}
+        renderItem = {({item})=>(
+          <Text style = {styles.item}>{item.name}</Text>
+
+
+        )}
+      />
+
+      {/* <ScrollView>
       {people.map((item)=>{
         return (
           <View key={item.key}>
@@ -33,7 +48,7 @@ export default function App() {
           </View>
         )
       })}
-      </ScrollView>
+      </ScrollView> */}
       
     
     </View>
