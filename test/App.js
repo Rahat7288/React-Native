@@ -1,8 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React,{useState} from 'react';
+import { StyleSheet, Text, View, Button } from 'react-native';
+
 
 export default function App() {
+
+  const [name,setName] = useState('rahat');
+  const [person, setPerson] = useState ({name: 'Himel', age: 24});
+  const clickhandler = () => {
+    setName ('akash');
+    setPerson({name: 'Rakib', age: 28});
+  }
+
   return (
     /**
      * view help use to display the content 
@@ -10,17 +19,10 @@ export default function App() {
      * we can create view inside other view
      */
     <View style={styles.container}>
-
-      <View style = {styles.header}>
-        <Text style = {styles.boldText}>hello World</Text>
-      </View>
-
-      <View style = {styles.body}>
-        <Text>Rahat Islam Akash</Text>
-        <Text>Rahat Islam Akash</Text>
-        <Text>Rahat Islam Akash</Text>
-        <Text>Rahat Islam Akash</Text>
-
+      <Text>My Name Is {name}</Text>
+      <Text>His name is {person.name} nad his age is {person.age}</Text>
+      <View style = {styles.buttonContainer}>
+        <Button title = 'Update state' onPress = {clickhandler}/>
       </View>
     </View>
 
@@ -35,20 +37,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'yellow',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  header: {
-    backgoundColor: 'Red',
-    padding: 20,
-  },
-  boldText: {
-    fontWeight: 'bold',
-
-  },
-  body: {
-    backgroundColor: 'yellow',
+  buttonContainer: {
+    marginTop: 20,
     padding: 20,
   }
 });
