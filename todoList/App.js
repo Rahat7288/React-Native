@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react';
-import { StyleSheet, Text, View,FlatList } from 'react-native';
+import { StyleSheet, Text, View,FlatList, Alert } from 'react-native';
 import Header from './components/header';
 import TodoItem from './components/todoItems';
 import AddTodo from './components/addTodo';
@@ -24,12 +24,21 @@ export default function App() {
 
   {/**this function is for adding element into a list */}
    const submitHandler = (text) => {
-     setTodos((prevTodos)=>{
-       return [
-         { text: text, key: Math.random().toString()},
-         ...prevTodos
-       ];
-     })
+    if (text.length >3){
+      setTodos((prevTodos)=>{
+        return [
+          { text: text, key: Math.random().toString()},
+          ...prevTodos
+        ];
+      })
+
+    }else{
+      Alert.alert('OOps!', 'Todos must be over 3 chars long',[
+        {text: 'understood', onPress: () => console.log('alart closed')}
+      ]);
+    }
+
+     
 }
 
 
