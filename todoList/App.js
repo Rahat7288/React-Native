@@ -4,6 +4,7 @@ import { StyleSheet, Text, View,FlatList, Alert,TouchableWithoutFeedback,Keyboar
 import Header from './components/header';
 import TodoItem from './components/todoItems';
 import AddTodo from './components/addTodo';
+import Sandbox from './components/sandBox';
 
 export default function App() {
 
@@ -37,14 +38,12 @@ export default function App() {
         {text: 'understood', onPress: () => console.log('alart closed')}
       ]);
     }
-
-     
 }
-
-
-
-
   return (
+
+    //<Sandbox/>
+
+
 
     <TouchableWithoutFeedback onPress={()=>{
       Keyboard.dismiss();
@@ -84,9 +83,13 @@ const styles = StyleSheet.create({
     
   },
   content: {
+   // backgroundColor: 'pink',
     padding: 40,
+    flex: 1,
   },
   list: {
-
+    flex: 1,
+    marginTop: 20,
+   // backgroundColor: 'yellow',
   },
 });
